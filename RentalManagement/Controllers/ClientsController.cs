@@ -57,6 +57,7 @@ namespace RentalManagement.Controllers
             return View(client);
         }
 
+        [HttpPost]
         public ActionResult Save(Client client) {
             if(client.Id == 0) {
                 db.Clients.Add(client);

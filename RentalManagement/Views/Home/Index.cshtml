@@ -1,31 +1,378 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="height: 100%;" xmlns="http://www.w3.org/1999/xhtml">
+<head>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>
+        Rental Management
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/CustomData/rent_info.css" />
+    <link href="/CustomData/bootstrap.css" rel="stylesheet" />
+    <link href="/CustomData/custom.css" rel="stylesheet" />
+    <link href="/CustomData/translateelement.css" charset="UTF-8" rel="stylesheet" type="text/css" />
+
+    <script src="/CustomData/gtm.js" async=""></script>
+    <script src="/CustomData/analytics.js" async=""></script>
+    <script src="/CustomData/global.js" type="text/javascript"></script>
+
+    <script src="/CustomData/main.js" charset="UTF-8" type="text/javascript"></script>
+    <script src="/CustomData/element_main.js" charset="UTF-8" type="text/javascript"></script>
+</head>
+
+<body style="position: relative; min-height: 100%; top: 0px;">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container">
+                    <div class="col-sm-5 col-md-4">
+                    </div>
+                    <div class="col-sm-7 col-md-6">
+                        <p>DODO Property Management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+
+    <!-- PAGE CONTENT -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <h1>Dodo Property Rent</h1>
+                <h3 style="margin-bottom:20px;">Best rent management</h3>
+
+                <div class="well well-sm text-center">
+                    <form name="frm_search" id="frm_search" action="" method="post" class="form-inline">
+                        <input name="s" value="1" type="hidden" />
+                        <div class="form-group">
+                            <select name="s_pt" class="form-control">
+                                <option selected="selected" value="">Type</option>
+                                <option value="2">Condos</option>
+                                <option value="1">Houses</option>
+                                <option value="3">Suites</option>
+                                <option value="4">Townhouses</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <select name="s_ar" class="form-control">
+                                <option selected="selected" value="">Area</option>
+                                <option value="13">Abbotsford / Aldergrove</option>
+                                <option value="6">Cloverdale</option>
+                                <option value="1">Ladner/Tsawwassen</option>
+                                <option value="5">Langley</option>
+                                <option value="3">North Delta</option>
+                                <option value="4">Surrey</option>
+                                <option value="7">White Rock / South Surrey</option>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <a onclick="Search();" class="btn btn-search">
+                                SEARCH
+                            </a>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+                <div class="col-md-12">
+                    <h1 class="page_title">Rental Properties</h1>
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <span class="banner_featured"></span>
+                        <img id="prop1" src="/CustomData/262098867_001.jpg" class="img-responsive" />
+                    </div>
+
+                    <p><h1>@Html.ActionLink("Parklike Home on 1 acre", "Create", "Clients", new { Id="4445"})</h1></p>
+                    <p>Langley</p>
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Now
+
+                            <br />$2800/month
+                            <br />Prop ID: 4445
+                        </div>
+                        <br />
+                        <a href="@Url.Action("Create", "Clients")" class="btn">APPLY NOW</a>
+                    </div>
+
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <span class="banner_featured"></span>
+                        <img id="prop2" src="/CustomData/262114362-15.jpg" class="img-responsive" />
+                    </div>
+
+
+                    <h1><a href="">Stunning 7 Bedroom Custom Luxury Home -Panorama Ridge</a></h1>
+                    <p>Surrey</p>                        
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price text-danger">
+
+                            Now Available
+
+                            <br />$5850/month
+                            <br />Prop ID: 4443
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                    </div>
+
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <span class="banner_showing"></span>
+                        <img id="prop3" src="/CustomData/262068978-2.jpg" class="img-responsive" />
+                    </div>
+
+
+                    <h1><a href="">Rustic Renovated Rancher</a></h1>
+                    <p>Abbotsford / Aldergrove</p>
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Now
+
+                            <br />$1700/month
+                            <br />Prop ID: 4482
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                        <div class="clear"></div>
+                        <!--<div id="showing_blue_box">Apr 08 - 12:00pm - 12:10pm</div>-->
+                    </div>
+
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <span class="banner_showing"></span>
+                        <img id="prop4" src="/CustomData/2874_006.jpg" class="img-responsive" />
+                    </div>
+
+                    <h1><a href="">Gorgeous 1 Bedroom Suite</a></h1>
+                    <p>White Rock / South Surrey</p>
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Now
+
+                            <br />$1000/month
+                            <br />Prop ID: 4508
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                        <div class="clear"></div>
+                        <div id="showing_blue_box">Apr 08 - 12:00pm - 12:10pm</div>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <img id="prop65" src="/CustomData/5_053.jpg" class="img-responsive" />
+                    </div>
+
+                    <h1><a href="">Beautiful Ocean APPLY NOW Home</a></h1>
+                    <p>White Rock / South Surrey</p>
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Now
+
+                            <br />$3200/month
+                            <br />Prop ID: 4493
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                    </div>
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+
+                        <img id="prop66" src="/CustomData/262037761.jpg" class="img-responsive" />
+
+                    </div>
+
+                    <h1><a href="">Lovely 1 Bed Suite In Popular Panorama </a></h1>
+                    <p>Surrey</p>                        <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Now
+
+                            <br />$800/month
+                            <br />Prop ID: 4361
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                    </div>
+
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <img id="prop67" src="/CustomData/20150204_wb_oliver_h4_0157-copy-1.jpg" class="img-responsive" />
+                    </div>
+
+
+                    <h1><a href="">Stunning Townhouse at the "Oliver"</a></h1>
+                    <p>White Rock / South Surrey</p>
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Jun 01, 2017
+
+                            <br />$2950/month
+                            <br />Prop ID: 4494
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                    </div>
+
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <img id="prop68" src="/CustomData/256471716.jpg" class="img-responsive" />
+                    </div>
+
+
+                    <h1><a href=""> Fraser Heights! 4 Bedrooms Plus</a></h1>
+                    <p>Surrey</p>
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Now
+
+                            <br />$2400/month
+                            <br />Prop ID: 4464
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <img id="prop69" src="/CustomData/261916700.jpg" class="img-responsive" />
+                    </div>
+
+
+                    <h1><a href="">Morgan Crossing - 2 Bdrm + Den</a></h1>
+                    <p>White Rock / South Surrey</p>
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Jun 01, 2017
+
+                            <br />$1850/month
+                            <br />Prop ID: 4504
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                    </div>
+
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <img id="prop70" src="/CustomData/258980463.jpg" class="img-responsive" />
+                    </div>
+
+
+                    <h1><a href="">Elegant Ocean Park Custom Home </a></h1>
+                    <p>White Rock / South Surrey</p>
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Now
+
+                            <br />$4600/month
+                            <br />Prop ID: 4427
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                    </div>
+
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <img id="prop71" src="/CustomData/f2621572_101_12_001.jpg" class="img-responsive" />
+                    </div>
+
+
+                    <h1><a href="">Two Acre Hilltop Estate</a></h1>
+                    <p>White Rock / South Surrey</p>
+                    <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Now
+
+                            <br />$3600/month
+                            <br />Prop ID: 4225
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                    </div>
+
+                </div>
+
+                <div class="property-grid col-xs-12 col-sm-3 col-md-3">
+                    <div class="property_image">
+                        <img id="prop72" src="/CustomData/258612920.jpg" class="img-responsive" />
+                    </div>
+
+
+                    <h1><a href="">Lovely Home on a Greenbelt</a></h1>
+                    <p>White Rock / South Surrey</p>                        <div class="ri_4_col_lower_segment">
+                        <div class="ri_4_col_price">
+
+                            Available Now
+
+                            <br />$3300/month
+                            <br />Prop ID: 3654
+                        </div>
+                        <br />
+                        <a href="" class="btn">APPLY NOW</a>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+
+    <div id="ri_footer" class="clearfix">
+        <div id="row">
+            <div class="container">
+
+                <div class="col-md-4">
+                    <div>
+                        <a>Contact Us</a> | <a>Terms Of Use</a> | <a>Privacy Statement</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+</body>
+</html>

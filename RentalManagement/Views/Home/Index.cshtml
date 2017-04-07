@@ -92,7 +92,7 @@
                         <img id="prop1" src="/CustomData/262098867_001.jpg" class="img-responsive" />
                     </div>
 
-                    <p><h1>@Html.ActionLink("Parklike Home on 1 acre", "Create", "Clients", new { Id="4445"})</h1></p>
+                    <p><h1>@Html.ActionLink("Parklike Home on 1 acre", "Create", "Clients", new { AssetId = 1})</h1></p>
                     <p>Langley</p>
                     <div class="ri_4_col_lower_segment">
                         <div class="ri_4_col_price">
@@ -100,10 +100,10 @@
                             Available Now
 
                             <br />$2800/month
-                            <br />Prop ID: 4445
+                            <br />Prop ID: 1
                         </div>
                         <br />
-                        <a href="@Url.Action("Create", "Clients")" class="btn">APPLY NOW</a>
+                        <a href="@Url.Action("Create", "Clients", new { AssetId = 1})" class="btn">APPLY NOW</a>
                     </div>
 
                 </div>
@@ -123,10 +123,10 @@
                             Now Available
 
                             <br />$5850/month
-                            <br />Prop ID: 4443
+                            <br />Prop ID: 2
                         </div>
                         <br />
-                        <a href="" class="btn">APPLY NOW</a>
+                        <a href="" class="btn text-danger">NOT AVAILABLE</a>
                     </div>
 
                 </div>
@@ -137,8 +137,7 @@
                         <img id="prop3" src="/CustomData/262068978-2.jpg" class="img-responsive" />
                     </div>
 
-
-                    <h1><a href="">Rustic Renovated Rancher</a></h1>
+                    <p><h1>@Html.ActionLink("Rustic Renovated Rancher", "Create", "Clients", new { AssetId = 3 })</h1></p>
                     <p>Abbotsford / Aldergrove</p>
                     <div class="ri_4_col_lower_segment">
                         <div class="ri_4_col_price">
@@ -146,10 +145,10 @@
                             Available Now
 
                             <br />$1700/month
-                            <br />Prop ID: 4482
+                            <br />Prop ID: 3
                         </div>
                         <br />
-                        <a href="" class="btn">APPLY NOW</a>
+                        <a href="@Url.Action("Create", "Clients", new { AssetId = 3})" class="btn">APPLY NOW</a>
                         <div class="clear"></div>
                         <!--<div id="showing_blue_box">Apr 08 - 12:00pm - 12:10pm</div>-->
                     </div>
@@ -162,7 +161,7 @@
                         <img id="prop4" src="/CustomData/2874_006.jpg" class="img-responsive" />
                     </div>
 
-                    <h1><a href="">Gorgeous 1 Bedroom Suite</a></h1>
+                    <p><h1>@Html.ActionLink("Gorgeous 1 Bedroom Suite", "Create", "Clients", new { AssetId = 4 })</h1></p>
                     <p>White Rock / South Surrey</p>
                     <div class="ri_4_col_lower_segment">
                         <div class="ri_4_col_price">
@@ -170,10 +169,10 @@
                             Available Now
 
                             <br />$1000/month
-                            <br />Prop ID: 4508
+                            <br />Prop ID: 4
                         </div>
                         <br />
-                        <a href="" class="btn">APPLY NOW</a>
+                        <a href="@Url.Action("Create", "Clients", new { AssetId = 4})" class="btn">APPLY NOW</a>
                         <div class="clear"></div>
                         <div id="showing_blue_box">Apr 08 - 12:00pm - 12:10pm</div>
                     </div>

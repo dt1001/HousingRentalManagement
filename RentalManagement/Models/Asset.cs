@@ -22,6 +22,5 @@ namespace RentalManagement.Models {
         public ICollection<OccupancyHistoryRecord> OccupancyRecords;
 
         public ICollection<RentHistoryRecord> RentRecords;
-
     }
 }

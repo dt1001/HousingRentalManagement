@@ -202,6 +202,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RentalUnitsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,13 +228,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\FullAddress.cs" />
+    <Compile Include="Models\House.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OccupancyHistoryRecord.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\RentalUnit.cs" />
     <Compile Include="Models\RentHistoryRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -311,6 +315,11 @@
     <Content Include="Views\Assets\Edit.cshtml" />
     <Content Include="Views\Assets\Index.cshtml" />
     <Content Include="Views\Clients\ClientForm.cshtml" />
+    <Content Include="Views\RentalUnits\Create.cshtml" />
+    <Content Include="Views\RentalUnits\Delete.cshtml" />
+    <Content Include="Views\RentalUnits\Details.cshtml" />
+    <Content Include="Views\RentalUnits\Edit.cshtml" />
+    <Content Include="Views\RentalUnits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

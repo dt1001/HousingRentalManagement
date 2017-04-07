@@ -36,8 +36,11 @@ namespace RentalManagement.Controllers
 
         // GET: Clients/Create
         public ActionResult Create()
-        { 
-            return View();
+        {
+            var viewModel = new ClientViewModel {
+                Assets = db.Assets.ToList(),
+            };
+            return View(viewModel);
         }
 
         // POST: Clients/Create
@@ -45,7 +48,7 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, Assets, HomeAddress, WorkAddress")] Client client)
+        public ActionResult Create([Bind(Include = "Name, AssetId, HomeAddress, WorkAddress")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +60,7 @@ namespace RentalManagement.Controllers
             return View(client);
         }
 
+        [HttpPost]
         public ActionResult Save(Client client) {
             if(client.Id == 0) {
                 db.Clients.Add(client);

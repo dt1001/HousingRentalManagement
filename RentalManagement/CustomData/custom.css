@@ -1,0 +1,231 @@
+/* fixes side scrolling in boostrap. See https://github.com/twbs/bootstrap/issues/10711 */
+body {
+    overflow-x: hidden;
+}
+
+.gradient {
+background: url(../images/header_gradient.jpg) center center;
+/*height:90px;*/
+}
+
+.full {
+    height:50px;
+    border-top:1px solid white;
+    margin-bottom:20px;
+}
+
+.jumbotron {
+margin-top:51px;
+    margin-bottom:0px;
+background: url(../images/bg_header.jpg) center center no-repeat;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+padding-top:18px;
+padding-bottom:18px;
+}
+
+.jumbotron-small {
+margin-top:100px;
+background: url(../images/bg-main.jpg) center center no-repeat;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+height:80px;
+margin-bottom:40px;
+}
+
+.jumbotron h1, .jumbotron h2, .jumbotron p, .jumbotron-small h1, .jumbotron-small h2 {
+	color: #fff;
+}
+
+.jumbotron h1 {
+    font-size:36px;
+    margin-top:0px;
+}
+
+.marketing {
+	text-align:center;
+	margin-top:40px;
+}
+
+
+
+ul.dropdown-menu {
+border:0;
+box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.176);
+}
+
+ul.dropdown-menu li a {
+
+	color:#1B4B7B!important;
+}
+
+
+footer {
+    margin:40px 0px;
+    margin-bottom: 0px;
+    padding:10px 20px;
+    text-align:center;
+    background: #F7F7F9;
+
+}
+
+.logo-block {
+
+}
+
+.property-grid h1 {
+font-size: 16px;
+color: #256d92;
+font-family: "Times New Roman", Times, serif;
+margin-bottom: 5px;
+}
+
+.property-grid {
+margin-bottom:35px;
+}
+
+.property_image {
+display: block;
+min-height:inherit;
+}
+
+h1.page_title {
+width: 100%;
+padding-bottom: 0px;
+margin-bottom: 20px;
+}
+
+#ri_footer {
+width: 100%;
+height: 100%;
+background-color: #dbdbdb;
+border-top: #cacaca;
+padding-top: 25px;
+position: relative;
+bottom: 0px;
+margin-top: 25px;
+color: #333;
+font-size: 12px;
+font-family: "geneva", sans-serif;
+}
+#ri_footer_locations {
+width:100%;
+float: none;
+margin-right: 0px;
+}
+
+.banner_new, .banner_featured, .banner_pending, .banner_showing {
+width: 100%;
+height: 100%;
+background-size:100%;
+}
+
+.ri_4_col_lower_segment {
+width:100%;
+}
+
+.ri_4_col_lower_segment {
+
+}
+
+.ri_4_col_price {
+
+}
+
+#ri_breadcrumb_bar {
+	width:100%;
+}
+
+.ri_details_content_left {
+border: solid 1px #ccc;
+margin-top:20px;
+}
+
+#ri_details_content_left_map {
+	padding:0;
+}
+
+.ri_details_content_right {
+	margin-top:20px;
+}
+
+#ri_details_content_right_showing h1 {
+	width:100%;
+}
+
+.contact-info h1 {
+font-size: 14px;
+font-weight: bold;
+color: #256d92;
+text-transform: uppercase;
+font-family: geneva, sans-serif;
+margin-bottom: 25px;
+}
+
+.margin-20-bottom {
+    margin-bottom:20px;
+}
+.team img {
+margin-right:8px;
+
+}
+
+.team .row {
+margin-bottom:20px;
+}
+
+.btn {
+    font-size:12px;
+    padding:2px 8px;
+}
+
+.meridian-header {
+	background: #12B39A;
+	padding:40px 20px 30px 20px;
+	margin:0;
+}
+
+.meridian-logo {
+	text-align: center;
+}
+
+.meridian-logo img {
+	margin-bottom:10px;
+}
+
+.meridian-logo a {
+	color:white;
+}
+
+.link-block a {
+	color: white;
+	text-decoration: none;
+}
+.link-block a:hover {
+	text-decoration: none;
+}
+
+.link-block img:hover {
+	opacity:.8;
+}
+
+@media (min-width: 979px) {
+  ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+  }
+}
+
+body.tenant-application ul {
+    list-style: disc;
+}
+
+.right-logo {
+  margin-top: 35px;
+}
+#ri_details_content_left_description {
+    margin-top:10px;
+}

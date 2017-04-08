@@ -200,6 +200,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\ContractorsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
@@ -226,12 +228,26 @@
     <Compile Include="Migrations\201704060633482_AddAssetId.Designer.cs">
       <DependentUpon>201704060633482_AddAssetId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704072223337_AddNewModels.cs" />
+    <Compile Include="Migrations\201704072223337_AddNewModels.Designer.cs">
+      <DependentUpon>201704072223337_AddNewModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704072240591_addnewmodel.cs" />
+    <Compile Include="Migrations\201704072240591_addnewmodel.Designer.cs">
+      <DependentUpon>201704072240591_addnewmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704072259079_addnewmodel1.cs" />
+    <Compile Include="Migrations\201704072259079_addnewmodel1.Designer.cs">
+      <DependentUpon>201704072259079_addnewmodel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704072259361_addnewmodel2.cs" />
+    <Compile Include="Migrations\201704072259361_addnewmodel2.Designer.cs">
+      <DependentUpon>201704072259361_addnewmodel2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
-    <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Contractor.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\FullAddress.cs" />
@@ -322,6 +338,16 @@
     <Content Include="Views\Tickets\Details.cshtml" />
     <Content Include="Views\Tickets\Edit.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Contractors\Create.cshtml" />
+    <Content Include="Views\Contractors\Delete.cshtml" />
+    <Content Include="Views\Contractors\Details.cshtml" />
+    <Content Include="Views\Contractors\Edit.cshtml" />
+    <Content Include="Views\Contractors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -349,6 +375,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704060633482_AddAssetId.resx">
       <DependentUpon>201704060633482_AddAssetId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704072223337_AddNewModels.resx">
+      <DependentUpon>201704072223337_AddNewModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704072240591_addnewmodel.resx">
+      <DependentUpon>201704072240591_addnewmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704072259079_addnewmodel1.resx">
+      <DependentUpon>201704072259079_addnewmodel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704072259361_addnewmodel2.resx">
+      <DependentUpon>201704072259361_addnewmodel2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

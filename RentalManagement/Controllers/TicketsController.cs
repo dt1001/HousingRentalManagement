@@ -12,11 +12,20 @@ namespace RentalManagement.Controllers
 {
     public class TicketsController : Controller
     {
-        private TicketDBContext db = new TicketDBContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tickets
         public ActionResult Index()
         {
+            var query = (from  tick in db.Tickets
+                         from emp in tick.employees
+                             select new { tick.id,
+                                tick.issueDate,
+                                tick.priority,
+                                tick.description,
+                                 emp.empId,
+                                 emp.name
+                                }).ToList();
             return View(db.Tickets.ToList());
         }
 

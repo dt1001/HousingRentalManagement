@@ -19,8 +19,8 @@
             <div class="panel-body">
                 @Html.LabelFor(m => m.Client.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 @Html.TextBoxFor(m => m.Client.Name, new { @class = "form-control" }) <br />
-                @Html.LabelFor(m => m.Client.Assets, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.DropDownListFor(m => m.Client.AssetId, new SelectList(Model.Assets, "Id", "Type"), "Select Assets", new { @class = "form-control" })
+                @Html.LabelFor(m => m.Assets, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownListFor(m => m.Asset.Id, new SelectList(Model.Assets, "Id", "Type"), "Select Assets", new { @class = "form-control" })
             </div>
         </div>
     </div>

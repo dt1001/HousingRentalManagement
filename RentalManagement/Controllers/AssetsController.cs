@@ -23,7 +23,7 @@ namespace RentalManagement.Controllers
         // GET: Assets/Details/5
         public ActionResult Details(int id)
         {
-            var clients = db.Clients.Include(c => c.Assets).SingleOrDefault(c => c.Id == id);
+            var clients = db.Clients.Include(c => c.OccupancyRecords).SingleOrDefault(c => c.Id == id);
             if(clients == null) {
                 return HttpNotFound();
             }

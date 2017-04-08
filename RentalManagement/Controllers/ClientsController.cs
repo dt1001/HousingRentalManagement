@@ -40,6 +40,7 @@ namespace RentalManagement.Controllers
             var viewModel = new ClientViewModel {
                 Assets = db.Assets.ToList(),
             };
+
             return View("Create", viewModel);
         }
 
@@ -47,7 +48,7 @@ namespace RentalManagement.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToke
         public ActionResult Create(Client client, Asset asset)
         {
             client.OccupancyRecords = new List<OccupancyHistoryRecord>();

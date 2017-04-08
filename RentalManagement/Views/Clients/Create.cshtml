@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Clients")) 
 {
     @Html.AntiForgeryToken()
     
@@ -24,9 +24,8 @@
                     @Html.EditorFor(model => model.Client.Name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Client.Name, "", new { @class = "text-danger" }) <br />
 
-
                     @Html.LabelFor(m => m.Assets, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.ListBoxFor(m => m.Asset.Id, new SelectList(Model.Assets, "Id", "Type"), "Select Assets", new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.Asset.Id, new SelectList(Model.Assets, "Id", "Type"), "Select Assets", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Asset.Type, "", new { @class = "text-danger" }) <br />
                 </div>
             </div>

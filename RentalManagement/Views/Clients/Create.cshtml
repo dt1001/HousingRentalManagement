@@ -24,9 +24,9 @@
                     @Html.EditorFor(model => model.Client.Name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Client.Name, "", new { @class = "text-danger" }) <br />
 
-                    @Html.LabelFor(model => model.Client.Assets, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.DropDownListFor(model => model.Client.AssetId, new SelectList(Model.Assets, "Id", "Type"), "Select Assets", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Client.Assets.Type, "", new { @class = "text-danger" }) <br />
+                    @Html.LabelFor(m => m.Assets, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.DropDownListFor(m => m.Asset.Id, new SelectList(Model.Assets, "Id", "Type"), "Select Assets", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Asset.Type, "", new { @class = "text-danger" }) <br />
                 </div>
             </div>
         </div>

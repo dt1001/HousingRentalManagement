@@ -8,5 +8,9 @@ namespace RentalManagement.ViewModel {
     public class ClientViewModel {
        public Client Client { get; set; }
        public IEnumerable<Asset> Assets { get; set; }
+
+       public Asset Asset { get; set; } 
+
+       public int AssetId { get; set; }
     }
 }

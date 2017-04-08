@@ -18,7 +18,7 @@ namespace RentalManagement.Controllers
         // GET: Clients
         public ActionResult Index()
         {
-            var clients = db.Clients.Include(c => c.Assets).Include(c => c.HomeAddress)
+            var clients = db.Clients.Include(c => c.OccupancyRecords).Include(c => c.HomeAddress)
                           .Include(c => c.WorkAddress);
             return View(clients.ToList());
         }
@@ -26,7 +26,7 @@ namespace RentalManagement.Controllers
         // GET: Clients/Details/5
         public ActionResult Details(int id)
         {
-            var clients = db.Clients.Include(c => c.Assets).Include(c => c.HomeAddress).Include(c => c.WorkAddress).SingleOrDefault(c => c.Id == id);
+            var clients = db.Clients.Include(c => c.OccupancyRecords).Include(c => c.HomeAddress).Include(c => c.WorkAddress).SingleOrDefault(c => c.Id == id);
             if(clients == null) {
                 return HttpNotFound();
             }
@@ -40,18 +40,22 @@ namespace RentalManagement.Controllers
             var viewModel = new ClientViewModel {
                 Assets = db.Assets.ToList(),
             };
-            return View(viewModel);
+
+            return View("Create", viewModel);
         }
 
         // POST: Clients/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, AssetId, HomeAddress, WorkAddress")] Client client)
+        [ValidateAntiForgeryToke
+        public ActionResult Create(Client client, Asset asset)
         {
+            client.OccupancyRecords = new List<OccupancyHistoryRecord>();
+
             if (ModelState.IsValid)
             {
+                client.OccupancyRecords.Add(new OccupancyHistoryRecord { ClientId = client.Id, AssetId = asset.Id });
                 db.People.Add(client);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -61,13 +65,12 @@ namespace RentalManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(Client client) {
+        public ActionResult Save(Client client, Asset asset) {
             if(client.Id == 0) {
                 db.Clients.Add(client);
             }else {
                 var clientsInDB = db.Clients.Single(c => c.Id == client.Id);
                 clientsInDB.Name = client.Name;
-                clientsInDB.AssetId = client.AssetId;
                 clientsInDB.HomeAddress = client.HomeAddress;
                 clientsInDB.WorkAddress = client.WorkAddress;
             }

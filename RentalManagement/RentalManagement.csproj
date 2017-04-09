@@ -394,7 +394,6 @@
     <Content Include="Views\Assets\Details.cshtml" />
     <Content Include="Views\Assets\Edit.cshtml" />
     <Content Include="Views\Assets\Index.cshtml" />
-    <Content Include="Views\Clients\ClientForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

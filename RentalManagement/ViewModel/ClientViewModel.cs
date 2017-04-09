@@ -12,5 +12,9 @@ namespace RentalManagement.ViewModel {
        public Asset Asset { get; set; } 
 
        public int AssetId { get; set; }
+
+        public ICollection<OccupancyHistoryRecord> OccupancyRecords { get; set; }
+
+        public ICollection<RentHistoryRecord> RentRecords { get; set; }
     }
 }

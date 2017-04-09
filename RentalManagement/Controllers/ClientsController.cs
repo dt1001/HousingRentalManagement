@@ -18,7 +18,7 @@ namespace RentalManagement.Controllers
         // GET: Clients
         public ActionResult Index()
         {
-            var clients = db.Clients.Include(c => c.Assets).Include(c => c.HomeAddress)
+            var clients = db.Clients.Include(c => c.OccupancyRecords).Include(c => c.HomeAddress)
                           .Include(c => c.WorkAddress);
             return View(clients.ToList());
         }
@@ -26,7 +26,7 @@ namespace RentalManagement.Controllers
         // GET: Clients/Details/5
         public ActionResult Details(int id)
         {
-            var clients = db.Clients.Include(c => c.Assets).Include(c => c.HomeAddress).Include(c => c.WorkAddress).SingleOrDefault(c => c.Id == id);
+            var clients = db.Clients.Include(c => c.OccupancyRecords).Include(c => c.HomeAddress).Include(c => c.WorkAddress).SingleOrDefault(c => c.Id == id);
             if(clients == null) {
                 return HttpNotFound();
             }
@@ -40,7 +40,8 @@ namespace RentalManagement.Controllers
             var viewModel = new ClientViewModel {
                 Assets = db.Assets.ToList(),
             };
-            return View(viewModel);
+
+            return View("Create", viewModel);
         }
 
         // POST: Clients/Create
@@ -48,10 +49,15 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, AssetId, HomeAddress, WorkAddress")] Client client)
+        public ActionResult Create(Client client, Asset asset)
         {
+            client.OccupancyRecords = new List<OccupancyHistoryRecord>();
+            client.RentRecords = new List<RentHistoryRecord>();
+
             if (ModelState.IsValid)
             {
+                client.OccupancyRecords.Add(new OccupancyHistoryRecord { ClientId = client.Id, AssetId = asset.Id });
+                client.RentRecords.Add(new RentHistoryRecord { ClientId = client.Id, AssetId = asset.Id, AskingRent = 10, NegotiatedOn = DateTime.Today, NegotiatedRate = 10 });
                 db.People.Add(client);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,14 +66,33 @@ namespace RentalManagement.Controllers
             return View(client);
         }
 
+        // GET: Clients/Edit/5
+        public ActionResult Edit(int id) {
+            var clients = db.Clients.Include(c => c.HomeAddress).Include(c => c.WorkAddress).Include(c => c.OccupancyRecords).Include(c => c.RentRecords).SingleOrDefault(c => c.Id == id);            
+            if (clients == null) {
+                return HttpNotFound();
+            }
+
+            var viewModel = new ClientViewModel {
+                Client = clients,
+                Assets = db.Assets.ToList()
+            };
+
+            return View("Edit", viewModel);
+        }
+
         [HttpPost]
-        public ActionResult Save(Client client) {
+        public ActionResult Edit(Client client, Asset asset) {
             if(client.Id == 0) {
                 db.Clients.Add(client);
             }else {
                 var clientsInDB = db.Clients.Single(c => c.Id == client.Id);
+                clientsInDB.OccupancyRecords = new List<OccupancyHistoryRecord>();
+                clientsInDB.RentRecords = new List<RentHistoryRecord>();
+
+                clientsInDB.OccupancyRecords.Add(new OccupancyHistoryRecord { ClientId = clientsInDB.Id, AssetId = asset.Id});
+                clientsInDB.RentRecords.Add(new RentHistoryRecord { ClientId = client.Id, AssetId = asset.Id, AskingRent = 10, NegotiatedOn = DateTime.Today, NegotiatedRate = 10 });
                 clientsInDB.Name = client.Name;
-                clientsInDB.AssetId = client.AssetId;
                 clientsInDB.HomeAddress = client.HomeAddress;
                 clientsInDB.WorkAddress = client.WorkAddress;
             }
@@ -76,25 +101,11 @@ namespace RentalManagement.Controllers
             return RedirectToAction("Index", "Clients");
         }
 
-        // GET: Clients/Edit/5
-        public ActionResult Edit(int id)
-        {
-            var clients = db.Clients.Include(c => c.HomeAddress).Include(c => c.WorkAddress).SingleOrDefault(c => c.Id == id);
-            if(clients == null) {
-                return HttpNotFound();
-            }
-
-            var viewModel = new ClientViewModel {
-                Client = clients,
-                Assets = db.Assets.ToList()
-            };
-        
-            return View("ClientForm", viewModel);
-        }
 
         // POST: Clients/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] Client client)
@@ -106,7 +117,7 @@ namespace RentalManagement.Controllers
                 return RedirectToAction("Index");
             }
             return View(client);
-        }
+        }*/
 
         // GET: Clients/Delete/5
         public ActionResult Delete(int? id)

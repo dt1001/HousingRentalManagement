@@ -15,6 +15,7 @@ namespace RentalManagement.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Assets
+        [Authorize(Roles = "Employee,Supervisor,Client")]
         public ActionResult Index()
         {
             return View(db.Assets.ToList());

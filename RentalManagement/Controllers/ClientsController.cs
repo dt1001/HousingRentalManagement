@@ -16,6 +16,7 @@ namespace RentalManagement.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Clients
+        [Authorize(Roles = "Employee,Supervisor,Client")]
         public ActionResult Index()
         {
             var clients = db.Clients.Include(c => c.OccupancyRecords).Include(c => c.HomeAddress)

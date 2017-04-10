@@ -9,43 +9,43 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table" id="ticket-details">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.description)
+            id
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.issueDate)
+           Issue Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.priority)
+            Priority
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.empId)
+            Employee ID
+        </th>
+        <th>
+            Employee Name
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.issueDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.priority)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.empId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
 </table>
+@section Scripts{
+    <script>
+        $(Document).ready(function(){
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                url: '@Url.Action("Index")',
+                datatype: 'json',
+                success: function (response) {
+                    console.log(reponse);
+                    var details;
+                    for (var i = 0; i < response.length; i++) {
+                        
+                    }
+                    $('#ticket-details').append(details);
+                }
+            });
+        });
+    </script>
+}

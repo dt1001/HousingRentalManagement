@@ -14,6 +14,19 @@ namespace RentalManagement.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //override default JSON result settings
+        protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
+        {
+            return new JsonResult()
+            {
+                Data = data,
+                ContentType = contentType,
+                ContentEncoding = contentEncoding,
+                JsonRequestBehavior = behavior,
+                MaxJsonLength = Int32.MaxValue
+            };
+        }
+
         // GET: Tickets
         public ActionResult Index()
         {
@@ -22,11 +35,11 @@ namespace RentalManagement.Controllers
                              select new { tick.id,
                                 tick.issueDate,
                                 tick.priority,
-                                tick.description,
                                  emp.empId,
                                  emp.name
                                 }).ToList();
-            return View(db.Tickets.ToList());
+            return Json(query, JsonRequestBehavior.AllowGet);
+            //return View();
         }
 
         // GET: Tickets/Details/5
@@ -36,12 +49,18 @@ namespace RentalManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ticket ticket = db.Tickets.Find(id);
-            if (ticket == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ticket);
+            var query = (from tick in db.Tickets
+                         from emp in tick.employees
+                         select new
+                         {
+                             tick.id,
+                             tick.issueDate,
+                             tick.priority,
+                             emp.empId,
+                             emp.name,
+                             tick.description
+                         }).ToList();
+            return Json(query, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Tickets/Create

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<RentalManagement.Models.Contractor>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Contractors";
 }
 
-<h2>Index</h2>
+<h2>Contractors</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.profession)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.contId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.contId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.contId })
         </td>
     </tr>
 }

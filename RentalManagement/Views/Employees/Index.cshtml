@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<RentalManagement.Models.Employee>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Employees";
 }
 
-<h2>Index</h2>
+<h2>Employees</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.phonenumber)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.empId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.empId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.empId })
         </td>
     </tr>
 }

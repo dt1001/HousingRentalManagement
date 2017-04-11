@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RentalManagement.Models;
+using RentalManagement.ViewModel;
 
 namespace RentalManagement.Controllers
 {
@@ -73,7 +74,12 @@ namespace RentalManagement.Controllers
         // GET: Tickets/Create
         public ActionResult Create()
         {
-            return View();
+            var viewModel = new TicketViewModel
+            {
+                Employees = db.Employees.ToList(),
+                Contractors = db.Contractors.ToList()
+            };
+            return View("Create",viewModel);
         }
 
         // POST: Tickets/Create
@@ -81,10 +87,18 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,description,issueDate,priority")] Ticket ticket, Employee emp)
+        public ActionResult Create([Bind(Include = "id,description,issueDate,priority")] Ticket ticket, Employee emp, Contractor cont)
         {
             if (ModelState.IsValid)
             {
+                if (emp != null)
+                {
+                    ticket.employees.Add(emp);
+                }
+                if (cont != null)
+                {
+                    ticket.contractors.Add(cont);
+                }
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("Index");

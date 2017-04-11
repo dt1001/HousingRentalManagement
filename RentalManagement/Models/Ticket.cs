@@ -19,7 +19,7 @@ namespace RentalManagement.Models
         public int id { get; set; }
         public DateTime issueDate { get; set; }
         public int priority { get; set; }
-        [StringLength(64)]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
         //public virtual ICollection<RentalUnit>;
         public virtual ICollection<Employee> employees {get;set;}

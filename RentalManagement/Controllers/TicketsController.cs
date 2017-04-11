@@ -30,16 +30,23 @@ namespace RentalManagement.Controllers
         // GET: Tickets
         public ActionResult Index()
         {
-            var query = (from  tick in db.Tickets
+            return View();
+        }
+
+        //gets all tickets from database
+        public JsonResult GetTickets()
+        {
+            var query = (from tick in db.Tickets
                          from emp in tick.employees
-                             select new { tick.id,
-                                tick.issueDate,
-                                tick.priority,
-                                 emp.empId,
-                                 emp.name
-                                }).ToList();
+                         select new
+                         {
+                             tick.id,
+                             tick.issueDate,
+                             tick.priority,
+                             emp.empId,
+                             emp.name
+                         }).ToList();
             return Json(query, JsonRequestBehavior.AllowGet);
-            //return View();
         }
 
         // GET: Tickets/Details/5
@@ -74,7 +81,7 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,description,issueDate,priority")] Ticket ticket)
+        public ActionResult Create([Bind(Include = "id,description,issueDate,priority")] Ticket ticket, Employee emp)
         {
             if (ModelState.IsValid)
             {

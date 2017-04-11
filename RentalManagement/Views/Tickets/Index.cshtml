@@ -9,10 +9,10 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table" id="ticket-details">
+<table class="table" id="ticket-list">
     <tr>
         <th>
-            id
+            Ticket Id
         </th>
         <th>
            Issue Date
@@ -31,19 +31,34 @@
 </table>
 @section Scripts{
     <script>
-        $(Document).ready(function(){
+        //alert("asdas");
+        $(document).ready(function(){
             $.ajax({
+                //async:true,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
-                url: '@Url.Action("Index")',
+                url: '@Url.Action("GetTickets")',
                 datatype: 'json',
                 success: function (response) {
                     console.log(reponse);
-                    var details;
+                    alert("dfjask");
                     for (var i = 0; i < response.length; i++) {
-                        
+                        $('#ticket-list').append(
+                            "<tr><td>" + response[i]['id'] + "</td>"+
+                            "<td>" + new Date(parseInt(response[i]['issueDate'])) + "</td>" +
+                            "<td>" + response[i]['priority'] + "</td>"+
+                            "<td>" + response[i]['empId'] + "</td>"+
+                            "<td>" + response[i]['name'] + "</td>"+
+                            "<td><button type = \"button\" value=\""+data[i].ID + "\">Edit</button></td>" +
+                        + "<td><button type = \"button\" value=\"" + data[i].ID + "\">Delete</button></td>" +
+                        + "<td><button type = \"button\" value=\"" + data[i].ID + "\">Update</button></td></tr>"
+                        );
                     }
-                    $('#ticket-details').append(details);
+                    details += "</tr>";
+                    
+                },
+                error: function () {
+                    alert("Server could not process your request");
                 }
             });
         });

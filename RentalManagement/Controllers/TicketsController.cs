@@ -87,15 +87,15 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,description,issueDate,priority")] Ticket ticket, Employee emp, Contractor cont)
+        public ActionResult Create(Ticket ticket, Employee emp, Contractor cont)
         {
             if (ModelState.IsValid)
             {
-                if (emp != null)
+                if (emp != null && !emp.Equals("Select Employee"))
                 {
                     ticket.employees.Add(emp);
                 }
-                if (cont != null)
+                if (cont != null && !emp.Equals("Select Contractor"))
                 {
                     ticket.contractors.Add(cont);
                 }

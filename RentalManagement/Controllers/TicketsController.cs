@@ -31,10 +31,22 @@ namespace RentalManagement.Controllers
         // GET: Tickets
         public ActionResult Index()
         {
-            return View();
+            var viewModel = (from tick in db.Tickets
+                         from emp in tick.employees
+                         from cont in tick.contractors
+                         select new TicketWrapper()
+                         {
+                             id = tick.id,
+                             issueDate = tick.issueDate,
+                             priority = tick.priority,
+                             empId = emp.empId,
+                             name = emp.name,
+                             companyName = cont.companyName
+                         }).ToList();
+            return View("Index", viewModel);
         }
 
-        //gets all tickets from database
+        //gets all tickets from database in JSON format
         public JsonResult GetTickets()
         {
             var query = (from tick in db.Tickets
@@ -58,23 +70,27 @@ namespace RentalManagement.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var query = (from tick in db.Tickets
-                         from emp in tick.employees
-                         select new
-                         {
-                             tick.id,
-                             tick.issueDate,
-                             tick.priority,
-                             emp.empId,
-                             emp.name,
-                             tick.description
-                         }).ToList();
-            return Json(query, JsonRequestBehavior.AllowGet);
+                             where tick.id == id
+                             from emp in tick.employees
+                             from cont in tick.contractors
+                             select new TicketWrapper()
+                             {
+                                 id = tick.id,
+                                 issueDate = tick.issueDate,
+                                 priority = tick.priority,
+                                 empId = emp.empId,
+                                 name = emp.name,
+                                 description = tick.description,
+                                 companyName = cont.companyName
+                             }).ToList();
+            var viewModel = query[0];
+            return View("Details", viewModel);
         }
 
         // GET: Tickets/Create
         public ActionResult Create()
         {
-            var viewModel = new TicketViewModel
+            TicketViewModel viewModel = new TicketViewModel
             {
                 Employees = db.Employees.ToList(),
                 Contractors = db.Contractors.ToList()
@@ -94,7 +110,7 @@ namespace RentalManagement.Controllers
                 if (employee != null && employee.empId > 0)
                 {
                     Employee emp = db.Employees.Find(employee.empId);
-                    ticket.employees.Add(employee);
+                    ticket.employees.Add(emp);
 
                     emp.tickets.Add(ticket);
                     db.Entry(emp).State = EntityState.Modified;
@@ -121,12 +137,17 @@ namespace RentalManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ticket ticket = db.Tickets.Find(id);
-            if (ticket == null)
+            TicketViewModel viewModel = new TicketViewModel
+            {
+                Employees = db.Employees.ToList(),
+                Contractors = db.Contractors.ToList(),
+                ticket = db.Tickets.Find(id)
+            };
+            if (viewModel.ticket == null)
             {
                 return HttpNotFound();
             }
-            return View(ticket);
+            return View("Edit",viewModel);
         }
 
         // POST: Tickets/Edit/5
@@ -134,11 +155,13 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,description,issueDate,priority")] Ticket ticket)
+        public ActionResult Edit([Bind(Include = "id,description,issueDate,priority")] Ticket ticket, Employee employee, Contractor contractor)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(ticket).State = EntityState.Modified;
+                db.Entry(db.Employees.Find(employee.empId)).State = EntityState.Modified;
+                db.Entry(db.Contractors.Find(contractor.contId)).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

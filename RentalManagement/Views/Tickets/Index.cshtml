@@ -1,5 +1,4 @@
-﻿@model IEnumerable<RentalManagement.Models.Ticket>
-
+﻿@model IEnumerable <RentalManagement.ViewModel.TicketWrapper>
 @{
     ViewBag.Title = "Tickets";
 }
@@ -12,54 +11,51 @@
 <table class="table" id="ticket-list">
     <tr>
         <th>
-            Ticket Id
+            @Html.DisplayNameFor(model => model.id)
         </th>
         <th>
-           Issue Date
+            @Html.DisplayNameFor(model => model.issueDate)
         </th>
         <th>
-            Priority
+            @Html.DisplayNameFor(model => model.priority)
         </th>
         <th>
-            Employee ID
+            @Html.DisplayNameFor(model => model.empId)
         </th>
         <th>
-            Employee Name
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.companyName)
         </th>
         <th></th>
     </tr>
-</table>
-@section Scripts{
-    <script>
-        //alert("asdas");
-        $(document).ready(function(){
-            $.ajax({
-                //async:true,
-                type: 'GET',
-                contentType: 'application/json; charset=utf-8',
-                url: '@Url.Action("GetTickets")',
-                datatype: 'json',
-                success: function (response) {
-                    console.log(response);
-                    //alert("dfjask");
-                    for (var i = 0; i < response.length; i++) {
-                        $('#ticket-list').append(
-                            "<tr><td>" + response[i]+ "</td>"+
-                            //"<td>" + new Date(parseInt(response[i])) + "</td>" +
-                            "<td>" + response[i] + "</td>"+
-                            "<td>" + response[i] + "</td>"+
-                            "<td>" + response[i] + "</td>"+
-                            "<td><button type = \"button\" value=\"" + response[i].ID + "\">Edit</button></td>" +
-                        + "<td><button type = \"button\" value=\"" + response[i].ID + "\">Delete</button></td>" +
-                        + "<td><button type = \"button\" value=\"" + response[i].ID + "\">Update</button></td></tr>"
-                        );
-                    }
-                    
-                },
-                error: function () {
-                    alert("Server could not process your request");
-                }
-            });
-        });
-    </script>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(model => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.issueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.priority)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.empId)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.companyName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
 }
+</table>

@@ -11,10 +11,7 @@ namespace RentalManagement.Models
     [Table("Ticket")]
     public class Ticket
     {
-        /*public Ticket()
-        {
-            this.Ticket = new HashSet<RentalUnit>();
-        }*/
+        
         [Key]
         public int id { get; set; }
         public DateTime issueDate { get; set; }
@@ -24,5 +21,10 @@ namespace RentalManagement.Models
         //public virtual ICollection<RentalUnit>;
         public virtual ICollection<Employee> employees {get;set;}
         public virtual ICollection<Contractor> contractors { get; set; }
+        public Ticket()
+        {
+            this.employees = new List<Employee>();
+            this.contractors = new List<Contractor>();
+        }
     }
 }

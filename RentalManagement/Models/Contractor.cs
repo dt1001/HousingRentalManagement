@@ -20,5 +20,10 @@ namespace RentalManagement.Models
         public double rate { get; set; }
         [StringLength(64)]
         public string profession { get; set; }
+        public virtual ICollection<Ticket> tickets { get; set; }
+        public Contractor()
+        {
+            this.tickets = new List<Ticket>();
+        }
     }
 }

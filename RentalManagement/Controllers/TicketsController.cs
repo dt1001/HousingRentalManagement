@@ -87,24 +87,31 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Ticket ticket, Employee emp, Contractor cont)
+        public ActionResult Create(Ticket ticket, Employee employee, Contractor contractor)
         {
             if (ModelState.IsValid)
             {
-                if (emp != null && !emp.Equals("Select Employee"))
+                if (employee != null && employee.empId > 0)
                 {
-                    ticket.employees.Add(emp);
+                    Employee emp = db.Employees.Find(employee.empId);
+                    ticket.employees.Add(employee);
+
+                    emp.tickets.Add(ticket);
+                    db.Entry(emp).State = EntityState.Modified;
                 }
-                if (cont != null && !emp.Equals("Select Contractor"))
+                if (contractor != null && contractor.contId > 0)
                 {
+                    Contractor cont = db.Contractors.Find(contractor.contId);
                     ticket.contractors.Add(cont);
+                    cont.tickets.Add(ticket);
+                    db.Entry(cont).State = EntityState.Modified;
                 }
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(ticket);
+            return RedirectToAction("Index");
         }
 
         // GET: Tickets/Edit/5

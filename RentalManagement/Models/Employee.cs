@@ -20,7 +20,10 @@ namespace RentalManagement.Models
         public string email { get; set; }
         [StringLength(64)]
         public string phonenumber { get; set; }
-        public Nullable<int>ticketId { get; set; }
         public virtual ICollection<Ticket> tickets { get; set; }
+        public Employee()
+        {
+            this.tickets = new List<Ticket>();
+        }
     }
 }

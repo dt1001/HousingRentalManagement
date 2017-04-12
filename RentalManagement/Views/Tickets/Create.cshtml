@@ -45,20 +45,20 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <label class="control-label col-md-2">Employee</label>
-            <!--@Html.LabelFor(model => model.Employee.empId, htmlAttributes: new { @class = "control-label col-md-2" })-->
+            <!--@Html.LabelFor(model => model.employee.empId, htmlAttributes: new { @class = "control-label col-md-2" })-->
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Employee.empId, new SelectList(Model.Employees, "empId", "name"), "Select Employee", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Employees, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(m => m.empId, new SelectList(Model.Employees, "empId", "name"), "Select Employee", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.employee, "", new { @class = "text-danger" })
             </div>
         </div>     
         
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <label class="control-label col-md-2">Contractor</label>
-            <!--@Html.LabelFor(model => model.Contractor.contId, htmlAttributes: new { @class = "control-label col-md-2" })-->
+            <!--@Html.LabelFor(model => model.contractor.contId, htmlAttributes: new { @class = "control-label col-md-2" })-->
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Contractor.contId, new SelectList(Model.Contractors, "contId", "name"), "Select Contractor", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Contractor, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.contractor.contId, new SelectList(Model.Contractors, "contId", "companyName"), "Select Contractor", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.contractor, "", new { @class = "text-danger" })
             </div>
         </div>   
 

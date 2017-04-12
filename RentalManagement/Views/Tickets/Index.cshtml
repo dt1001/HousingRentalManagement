@@ -40,21 +40,20 @@
                 url: '@Url.Action("GetTickets")',
                 datatype: 'json',
                 success: function (response) {
-                    console.log(reponse);
-                    alert("dfjask");
+                    console.log(response);
+                    //alert("dfjask");
                     for (var i = 0; i < response.length; i++) {
                         $('#ticket-list').append(
-                            "<tr><td>" + response[i]['id'] + "</td>"+
-                            "<td>" + new Date(parseInt(response[i]['issueDate'])) + "</td>" +
-                            "<td>" + response[i]['priority'] + "</td>"+
-                            "<td>" + response[i]['empId'] + "</td>"+
-                            "<td>" + response[i]['name'] + "</td>"+
-                            "<td><button type = \"button\" value=\""+data[i].ID + "\">Edit</button></td>" +
-                        + "<td><button type = \"button\" value=\"" + data[i].ID + "\">Delete</button></td>" +
-                        + "<td><button type = \"button\" value=\"" + data[i].ID + "\">Update</button></td></tr>"
+                            "<tr><td>" + response[i]+ "</td>"+
+                            //"<td>" + new Date(parseInt(response[i])) + "</td>" +
+                            "<td>" + response[i] + "</td>"+
+                            "<td>" + response[i] + "</td>"+
+                            "<td>" + response[i] + "</td>"+
+                            "<td><button type = \"button\" value=\"" + response[i].ID + "\">Edit</button></td>" +
+                        + "<td><button type = \"button\" value=\"" + response[i].ID + "\">Delete</button></td>" +
+                        + "<td><button type = \"button\" value=\"" + response[i].ID + "\">Update</button></td></tr>"
                         );
                     }
-                    details += "</tr>";
                     
                 },
                 error: function () {

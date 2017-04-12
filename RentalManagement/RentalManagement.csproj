@@ -205,8 +205,37 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
+	<Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704040807040_InitialCreate.cs" />
+    <Compile Include="Migrations\201704040807040_InitialCreate.Designer.cs">
+      <DependentUpon>201704040807040_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704040832587_AddAssetsToClient.cs" />
+    <Compile Include="Migrations\201704040832587_AddAssetsToClient.Designer.cs">
+      <DependentUpon>201704040832587_AddAssetsToClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704042029312_AddAssetsToClient1.cs" />
+    <Compile Include="Migrations\201704042029312_AddAssetsToClient1.Designer.cs">
+      <DependentUpon>201704042029312_AddAssetsToClient1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704042058362_AddClientViewModel.cs" />
+    <Compile Include="Migrations\201704042058362_AddClientViewModel.Designer.cs">
+      <DependentUpon>201704042058362_AddClientViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704060633482_AddAssetId.cs" />
+    <Compile Include="Migrations\201704060633482_AddAssetId.Designer.cs">
+      <DependentUpon>201704060633482_AddAssetId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704080556290_ChangedDB.cs" />
+    <Compile Include="Migrations\201704080556290_ChangedDB.Designer.cs">
+      <DependentUpon>201704080556290_ChangedDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704080739039_AddedNullableDateTime.cs" />
+    <Compile Include="Migrations\201704080739039_AddedNullableDateTime.Designer.cs">
+      <DependentUpon>201704080739039_AddedNullableDateTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -231,6 +260,82 @@
     <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CustomData\00r0r_56txjpfi2se_1200x900_001.jpg" />
+    <Content Include="CustomData\15126_exterior_viewa01_low-res.jpg" />
+    <Content Include="CustomData\15768f1313774_201_94_004.jpg" />
+    <Content Include="CustomData\1_074.jpg" />
+    <Content Include="CustomData\1_075.jpg" />
+    <Content Include="CustomData\1_083.jpg" />
+    <Content Include="CustomData\1_091.jpg" />
+    <Content Include="CustomData\20150204_wb_oliver_h4_0157-copy-1.jpg" />
+    <Content Include="CustomData\255835946.jpg" />
+    <Content Include="CustomData\256471716.jpg" />
+    <Content Include="CustomData\258612920.jpg" />
+    <Content Include="CustomData\258813152_001.jpg" />
+    <Content Include="CustomData\258980463.jpg" />
+    <Content Include="CustomData\261622679-3_005.jpg" />
+    <Content Include="CustomData\261698120_001.jpg" />
+    <Content Include="CustomData\261916700.jpg" />
+    <Content Include="CustomData\261962339_001.jpg" />
+    <Content Include="CustomData\262029270-19_001.jpg" />
+    <Content Include="CustomData\262035982_001.jpg" />
+    <Content Include="CustomData\262037761.jpg" />
+    <Content Include="CustomData\262044391_001.jpg" />
+    <Content Include="CustomData\262049314_001.jpg" />
+    <Content Include="CustomData\262051370-1.jpg" />
+    <Content Include="CustomData\262058014-1.jpg" />
+    <Content Include="CustomData\262060849.jpg" />
+    <Content Include="CustomData\262068978-2.jpg" />
+    <Content Include="CustomData\262075058-12.jpg" />
+    <Content Include="CustomData\262076511.jpg" />
+    <Content Include="CustomData\262081440.jpg" />
+    <Content Include="CustomData\262088019.jpg" />
+    <Content Include="CustomData\262098867_001.jpg" />
+    <Content Include="CustomData\262100675.jpg" />
+    <Content Include="CustomData\262108971-13.jpg" />
+    <Content Include="CustomData\262114362-15.jpg" />
+    <Content Include="CustomData\262123619.jpg" />
+    <Content Include="CustomData\262143747.jpg" />
+    <Content Include="CustomData\28-1-003.jpg" />
+    <Content Include="CustomData\2874_006.jpg" />
+    <Content Include="CustomData\2_071.jpg" />
+    <Content Include="CustomData\5_053.jpg" />
+    <Content Include="CustomData\69623125.jpg" />
+    <Content Include="CustomData\76_101_94_001.jpg" />
+    <Content Include="CustomData\8_031.jpg" />
+    <Content Include="CustomData\analytics.js" />
+    <Content Include="CustomData\backyard_011.jpg" />
+    <Content Include="CustomData\bootstrap-hover-dropdown.js" />
+    <Content Include="CustomData\bootstrap.css" />
+    <Content Include="CustomData\clubhouse-front.jpg" />
+    <Content Include="CustomData\conversion.js" />
+    <Content Include="CustomData\custom.css" />
+    <Content Include="CustomData\element.js" />
+    <Content Include="CustomData\element_main.js" />
+    <Content Include="CustomData\f1123681_101_94_002.jpg" />
+    <Content Include="CustomData\f1201310_101_94_002.jpg" />
+    <Content Include="CustomData\f1213246_101_94_002.jpg" />
+    <Content Include="CustomData\f1213446_101_94_001.jpg" />
+    <Content Include="CustomData\f1325235_101_12_002.jpg" />
+    <Content Include="CustomData\f1423282_e01_94_032.jpg" />
+    <Content Include="CustomData\f1427361_101_94_005.jpg" />
+    <Content Include="CustomData\f1427839_101_94_007.jpg" />
+    <Content Include="CustomData\f1439368_101_94_001.jpg" />
+    <Content Include="CustomData\f1446350_201_12_001.jpg" />
+    <Content Include="CustomData\f2621572_101_12_001.jpg" />
+    <Content Include="CustomData\f2810660_101_94_002.jpg" />
+    <Content Include="CustomData\global.js" />
+    <Content Include="CustomData\gtm.js" />
+    <Content Include="CustomData\img_1367.jpg" />
+    <Content Include="CustomData\img_20140721_103446_002.jpg" />
+    <Content Include="CustomData\img_4315_003.jpg" />
+    <Content Include="CustomData\img_5395.jpg" />
+    <Content Include="CustomData\jquery_002.js" />
+    <Content Include="CustomData\main.js" />
+    <Content Include="CustomData\rent_info.css" />
+    <Content Include="CustomData\superfish.css" />
+    <Content Include="CustomData\superfish.js" />
+    <Content Include="CustomData\translateelement.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -325,6 +430,29 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704040807040_InitialCreate.resx">
+      <DependentUpon>201704040807040_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704040832587_AddAssetsToClient.resx">
+      <DependentUpon>201704040832587_AddAssetsToClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704042029312_AddAssetsToClient1.resx">
+      <DependentUpon>201704042029312_AddAssetsToClient1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704042058362_AddClientViewModel.resx">
+      <DependentUpon>201704042058362_AddClientViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704060633482_AddAssetId.resx">
+      <DependentUpon>201704060633482_AddAssetId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704080556290_ChangedDB.resx">
+      <DependentUpon>201704080556290_ChangedDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704080739039_AddedNullableDateTime.resx">
+      <DependentUpon>201704080739039_AddedNullableDateTime.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

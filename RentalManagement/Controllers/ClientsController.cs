@@ -16,17 +16,28 @@ namespace RentalManagement.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Clients
-        public ActionResult Index()
-        {
-            var clients = db.Clients.Include(c => c.Assets).Include(c => c.HomeAddress)
-                          .Include(c => c.WorkAddress);
-            return View(clients.ToList());
+        [Authorize(Roles = "Employee,Supervisor,Client")]
+        public ActionResult Index() {
+            List<AssetClientViewModel> viewModel = new List<AssetClientViewModel>();
+            var clients = (from c in db.Clients
+                           join o in db.OccupancyRecords on c.Id equals o.ClientId
+                           join a in db.Assets on o.AssetId equals a.Id
+                           select new { ClientId = c.Id, Name = c.Name, AssetType = a.Type, AssetAddress = a.Address }).ToList();
+            foreach (var client in clients) {
+                viewModel.Add(new AssetClientViewModel() {
+                    ClientId = client.ClientId,
+                    ClientName = client.Name,
+                    AssetAddress = client.AssetAddress,
+                    AssetType = client.AssetType
+                });
+            }
+            return View(viewModel);
         }
 
         // GET: Clients/Details/5
         public ActionResult Details(int id)
         {
-            var clients = db.Clients.Include(c => c.Assets).Include(c => c.HomeAddress).Include(c => c.WorkAddress).SingleOrDefault(c => c.Id == id);
+            var clients = db.Clients.Include(c => c.OccupancyRecords).Include(c => c.HomeAddress).Include(c => c.WorkAddress).SingleOrDefault(c => c.Id == id);
             if(clients == null) {
                 return HttpNotFound();
             }
@@ -36,8 +47,12 @@ namespace RentalManagement.Controllers
 
         // GET: Clients/Create
         public ActionResult Create()
-        { 
-            return View();
+        {
+            var viewModel = new ClientViewModel {
+                Assets = db.Assets.ToList(),
+            };
+
+            return View("Create", viewModel);
         }
 
         // POST: Clients/Create
@@ -45,38 +60,27 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, Assets, HomeAddress, WorkAddress")] Client client)
+        public ActionResult Create(Client Client, Asset Asset)
         {
+            Client.OccupancyRecords = new List<OccupancyHistoryRecord>();
+            Client.RentRecords = new List<RentHistoryRecord>();
+
             if (ModelState.IsValid)
             {
-                db.People.Add(client);
+                Client.OccupancyRecords.Add(new OccupancyHistoryRecord { ClientId = Client.Id, AssetId = Asset.Id });
+                Client.RentRecords.Add(new RentHistoryRecord { ClientId = Client.Id, AssetId = Asset.Id, AskingRent = 10, NegotiatedOn = DateTime.Today, NegotiatedRate = 10 });
+                db.People.Add(Client);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(client);
-        }
-
-        public ActionResult Save(Client client) {
-            if(client.Id == 0) {
-                db.Clients.Add(client);
-            }else {
-                var clientsInDB = db.Clients.Single(c => c.Id == client.Id);
-                clientsInDB.Name = client.Name;
-                clientsInDB.AssetId = client.AssetId;
-                clientsInDB.HomeAddress = client.HomeAddress;
-                clientsInDB.WorkAddress = client.WorkAddress;
-            }
-            db.SaveChanges();
-
-            return RedirectToAction("Index", "Clients");
+            return View(Client);
         }
 
         // GET: Clients/Edit/5
-        public ActionResult Edit(int id)
-        {
-            var clients = db.Clients.Include(c => c.HomeAddress).Include(c => c.WorkAddress).SingleOrDefault(c => c.Id == id);
-            if(clients == null) {
+        public ActionResult Edit(int id) {
+            var clients = db.Clients.Include(c => c.HomeAddress).Include(c => c.WorkAddress).Include(c => c.OccupancyRecords).Include(c => c.RentRecords).SingleOrDefault(c => c.Id == id);            
+            if (clients == null) {
                 return HttpNotFound();
             }
 
@@ -84,13 +88,35 @@ namespace RentalManagement.Controllers
                 Client = clients,
                 Assets = db.Assets.ToList()
             };
-        
-            return View("ClientForm", viewModel);
+
+            return View("Edit", viewModel);
         }
+
+        [HttpPost]
+        public ActionResult Edit(Client Client, Asset Asset) {
+            if(Client.Id == 0) {
+                db.Clients.Add(Client);
+            }else {
+                var clientsInDB = db.Clients.Single(c => c.Id == Client.Id);
+                clientsInDB.OccupancyRecords = new List<OccupancyHistoryRecord>();
+                clientsInDB.RentRecords = new List<RentHistoryRecord>();
+
+                clientsInDB.OccupancyRecords.Add(new OccupancyHistoryRecord { ClientId = clientsInDB.Id, AssetId = Asset.Id});
+                clientsInDB.RentRecords.Add(new RentHistoryRecord { ClientId = Client.Id, AssetId = Asset.Id, AskingRent = 10, NegotiatedOn = DateTime.Today, NegotiatedRate = 10 });
+                clientsInDB.Name = Client.Name;
+                clientsInDB.HomeAddress = Client.HomeAddress;
+                clientsInDB.WorkAddress = Client.WorkAddress;
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Clients");
+        }
+
 
         // POST: Clients/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] Client client)
@@ -102,7 +128,7 @@ namespace RentalManagement.Controllers
                 return RedirectToAction("Index");
             }
             return View(client);
-        }
+        }*/
 
         // GET: Clients/Delete/5
         public ActionResult Delete(int? id)

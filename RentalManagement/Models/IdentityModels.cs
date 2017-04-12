@@ -24,7 +24,6 @@ namespace RentalManagement.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
         public DbSet<Person> People { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Asset> Assets { get; set; }

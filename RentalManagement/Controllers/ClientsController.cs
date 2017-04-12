@@ -17,11 +17,21 @@ namespace RentalManagement.Controllers
 
         // GET: Clients
         [Authorize(Roles = "Employee,Supervisor,Client")]
-        public ActionResult Index()
-        {
-            var clients = db.Clients.Include(c => c.OccupancyRecords).Include(c => c.HomeAddress)
-                          .Include(c => c.WorkAddress);
-            return View(clients.ToList());
+        public ActionResult Index() {
+            List<AssetClientViewModel> viewModel = new List<AssetClientViewModel>();
+            var clients = (from c in db.Clients
+                           join o in db.OccupancyRecords on c.Id equals o.ClientId
+                           join a in db.Assets on o.AssetId equals a.Id
+                           select new { ClientId = c.Id, Name = c.Name, AssetType = a.Type, AssetAddress = a.Address }).ToList();
+            foreach (var client in clients) {
+                viewModel.Add(new AssetClientViewModel() {
+                    ClientId = client.ClientId,
+                    ClientName = client.Name,
+                    AssetAddress = client.AssetAddress,
+                    AssetType = client.AssetType
+                });
+            }
+            return View(viewModel);
         }
 
         // GET: Clients/Details/5
@@ -50,21 +60,21 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Client client, Asset asset)
+        public ActionResult Create(Client Client, Asset Asset)
         {
-            client.OccupancyRecords = new List<OccupancyHistoryRecord>();
-            client.RentRecords = new List<RentHistoryRecord>();
+            Client.OccupancyRecords = new List<OccupancyHistoryRecord>();
+            Client.RentRecords = new List<RentHistoryRecord>();
 
             if (ModelState.IsValid)
             {
-                client.OccupancyRecords.Add(new OccupancyHistoryRecord { ClientId = client.Id, AssetId = asset.Id });
-                client.RentRecords.Add(new RentHistoryRecord { ClientId = client.Id, AssetId = asset.Id, AskingRent = 10, NegotiatedOn = DateTime.Today, NegotiatedRate = 10 });
-                db.People.Add(client);
+                Client.OccupancyRecords.Add(new OccupancyHistoryRecord { ClientId = Client.Id, AssetId = Asset.Id });
+                Client.RentRecords.Add(new RentHistoryRecord { ClientId = Client.Id, AssetId = Asset.Id, AskingRent = 10, NegotiatedOn = DateTime.Today, NegotiatedRate = 10 });
+                db.People.Add(Client);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(client);
+            return View(Client);
         }
 
         // GET: Clients/Edit/5
@@ -83,19 +93,19 @@ namespace RentalManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Client client, Asset asset) {
-            if(client.Id == 0) {
-                db.Clients.Add(client);
+        public ActionResult Edit(Client Client, Asset Asset) {
+            if(Client.Id == 0) {
+                db.Clients.Add(Client);
             }else {
-                var clientsInDB = db.Clients.Single(c => c.Id == client.Id);
+                var clientsInDB = db.Clients.Single(c => c.Id == Client.Id);
                 clientsInDB.OccupancyRecords = new List<OccupancyHistoryRecord>();
                 clientsInDB.RentRecords = new List<RentHistoryRecord>();
 
-                clientsInDB.OccupancyRecords.Add(new OccupancyHistoryRecord { ClientId = clientsInDB.Id, AssetId = asset.Id});
-                clientsInDB.RentRecords.Add(new RentHistoryRecord { ClientId = client.Id, AssetId = asset.Id, AskingRent = 10, NegotiatedOn = DateTime.Today, NegotiatedRate = 10 });
-                clientsInDB.Name = client.Name;
-                clientsInDB.HomeAddress = client.HomeAddress;
-                clientsInDB.WorkAddress = client.WorkAddress;
+                clientsInDB.OccupancyRecords.Add(new OccupancyHistoryRecord { ClientId = clientsInDB.Id, AssetId = Asset.Id});
+                clientsInDB.RentRecords.Add(new RentHistoryRecord { ClientId = Client.Id, AssetId = Asset.Id, AskingRent = 10, NegotiatedOn = DateTime.Today, NegotiatedRate = 10 });
+                clientsInDB.Name = Client.Name;
+                clientsInDB.HomeAddress = Client.HomeAddress;
+                clientsInDB.WorkAddress = Client.WorkAddress;
             }
             db.SaveChanges();
 

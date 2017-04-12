@@ -200,33 +200,58 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
-    <Compile Include="Controllers\ContractorsController.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704040807040_InitialCreate.cs" />
+    <Compile Include="Migrations\201704040807040_InitialCreate.Designer.cs">
+      <DependentUpon>201704040807040_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704040832587_AddAssetsToClient.cs" />
+    <Compile Include="Migrations\201704040832587_AddAssetsToClient.Designer.cs">
+      <DependentUpon>201704040832587_AddAssetsToClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704042029312_AddAssetsToClient1.cs" />
+    <Compile Include="Migrations\201704042029312_AddAssetsToClient1.Designer.cs">
+      <DependentUpon>201704042029312_AddAssetsToClient1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704042058362_AddClientViewModel.cs" />
+    <Compile Include="Migrations\201704042058362_AddClientViewModel.Designer.cs">
+      <DependentUpon>201704042058362_AddClientViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704060633482_AddAssetId.cs" />
+    <Compile Include="Migrations\201704060633482_AddAssetId.Designer.cs">
+      <DependentUpon>201704060633482_AddAssetId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704080556290_ChangedDB.cs" />
+    <Compile Include="Migrations\201704080556290_ChangedDB.Designer.cs">
+      <DependentUpon>201704080556290_ChangedDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704080739039_AddedNullableDateTime.cs" />
+    <Compile Include="Migrations\201704080739039_AddedNullableDateTime.Designer.cs">
+      <DependentUpon>201704080739039_AddedNullableDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704120805486_UpdateContext.cs" />
+    <Compile Include="Migrations\201704120805486_UpdateContext.Designer.cs">
+      <DependentUpon>201704120805486_UpdateContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\Contractor.cs" />
-    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\FullAddress.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OccupancyHistoryRecord.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\RentHistoryRecord.cs" />
-    <Compile Include="Models\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\AssetClientViewModel.cs" />
     <Compile Include="ViewModel\ClientViewModel.cs" />
-    <Compile Include="ViewModel\TicketViewModel.cs" />
-    <Compile Include="ViewModel\TicketWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lumen.css" />
@@ -375,22 +400,8 @@
     <Content Include="Views\Assets\Details.cshtml" />
     <Content Include="Views\Assets\Edit.cshtml" />
     <Content Include="Views\Assets\Index.cshtml" />
-    <Content Include="Views\Clients\ClientForm.cshtml" />
-    <Content Include="Views\Tickets\Create.cshtml" />
-    <Content Include="Views\Tickets\Delete.cshtml" />
-    <Content Include="Views\Tickets\Details.cshtml" />
-    <Content Include="Views\Tickets\Edit.cshtml" />
-    <Content Include="Views\Tickets\Index.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Contractors\Create.cshtml" />
-    <Content Include="Views\Contractors\Delete.cshtml" />
-    <Content Include="Views\Contractors\Details.cshtml" />
-    <Content Include="Views\Contractors\Edit.cshtml" />
-    <Content Include="Views\Contractors\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -402,6 +413,32 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704040807040_InitialCreate.resx">
+      <DependentUpon>201704040807040_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704040832587_AddAssetsToClient.resx">
+      <DependentUpon>201704040832587_AddAssetsToClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704042029312_AddAssetsToClient1.resx">
+      <DependentUpon>201704042029312_AddAssetsToClient1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704042058362_AddClientViewModel.resx">
+      <DependentUpon>201704042058362_AddClientViewModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704060633482_AddAssetId.resx">
+      <DependentUpon>201704060633482_AddAssetId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704080556290_ChangedDB.resx">
+      <DependentUpon>201704080556290_ChangedDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704080739039_AddedNullableDateTime.resx">
+      <DependentUpon>201704080739039_AddedNullableDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704120805486_UpdateContext.resx">
+      <DependentUpon>201704120805486_UpdateContext.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

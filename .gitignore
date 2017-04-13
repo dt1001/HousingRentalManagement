@@ -240,3 +240,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+#Migrations
+Migrations
+/RentalManagement/App_Data/aspnet-RentalManagement-201704041226091

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RentalManagement.Models.Employee>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+<h2>Employees</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.payRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phonenumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.payRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phonenumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.empId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.empId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.empId })
+        </td>
+    </tr>
+}
+
+</table>

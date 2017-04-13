@@ -31,11 +31,19 @@ namespace RentalManagement.Models
         public DbSet<OccupancyHistoryRecord> OccupancyRecords { get; set; }
         public DbSet<RentHistoryRecord> RentRecords { get; set; }
         public DbSet<RentalUnit> RentalUnits { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Contractor> Contractors { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

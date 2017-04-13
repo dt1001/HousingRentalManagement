@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RentalManagement.Models.Client>
+﻿@model IEnumerable<RentalManagement.ViewModel.AssetClientViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -9,19 +9,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.ClientName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OccupancyRecords)
+            @Html.DisplayNameFor(model => model.AssetType)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OccupancyRecords)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomeAddress) 
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WorkAddress)
+            @Html.DisplayNameFor(model => model.AssetAddress)
         </th>
         <th></th>
     </tr>
@@ -29,22 +23,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.ClientName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OccupancyRecords)
+            @Html.DisplayFor(modelItem => item.AssetType)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OccupancyRecords)
+            @Html.DisplayFor(modelItem => item.AssetAddress)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HomeAddress.StreetAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkAddress.StreetAddress)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @Html.ActionLink("Details", "Details", new { id = item.ClientId })
         </td>
     </tr>
 }

@@ -11,7 +11,7 @@ namespace RentalManagement.Models {
 
         public int ClientId { get; set; }
 
-        public DateTime NegotiatedOn { get; set; }
+        public DateTime? NegotiatedOn { get; set; }
 
         public Decimal AskingRent { get; set; }
 

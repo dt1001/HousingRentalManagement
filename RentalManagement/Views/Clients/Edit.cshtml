@@ -10,7 +10,6 @@
     @Html.AntiForgeryToken()
 
     @Html.HiddenFor(m => m.Client.Id)
-    @Html.HiddenFor(m => m.Asset.Id)
     @Html.HiddenFor(m => m.Client.HomeAddress.Id)
     @Html.HiddenFor(m => m.Client.WorkAddress.Id)
     foreach (var occ in Model.Client.OccupancyRecords) {
@@ -37,16 +36,28 @@
 
                 <br />
                 @Html.LabelFor(m => m.Client.OccupancyRecords, htmlAttributes: new { @class = "control-label col-md-2" })
-                
-                @foreach (var occ in Model.Client.OccupancyRecords) {
-                    <table class="table-bordered">
-                        <tr>
-                            <td>@Html.DisplayFor(model => occ)</td>
-                        </tr>
-                    </table>
-                }
+                <br />
 
+                    @foreach (var occ in Model.Client.OccupancyRecords) {
+                        <table class="table table-bordered" style="margin:10px">
+                            <tr>
+                                <th>Record ID</th>
+                                <th>Client ID</th>
+                                <th>Asset ID</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
 
+                            <tr>
+                                <td>@occ.Id</td>
+                                <td>@occ.ClientId</td>
+                                <td>@occ.AssetId</td>
+                                <td>@occ.StartDate</td>
+                                <td>@occ.EndDate</td>
+
+                            </tr>
+                        </table>
+                    }
 
             </div>
         </div>

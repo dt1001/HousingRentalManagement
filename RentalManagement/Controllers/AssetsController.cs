@@ -24,12 +24,12 @@ namespace RentalManagement.Controllers
         // GET: Assets/Details/5
         public ActionResult Details(int id)
         {
-            var clients = db.Clients.Include(c => c.OccupancyRecords).SingleOrDefault(c => c.Id == id);
-            if(clients == null) {
+            var assets = db.Assets.SingleOrDefault(c => c.Id == id);
+            if(assets == null) {
                 return HttpNotFound();
             }
 
-            return View(clients);
+            return View(assets);
         }
 
         // GET: Assets/Create
@@ -43,7 +43,7 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Type,AskingRent")] Asset asset)
+        public ActionResult Create(Asset asset)
         {
             if (ModelState.IsValid)
             {

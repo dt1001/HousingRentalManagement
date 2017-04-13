@@ -43,7 +43,7 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Type,AskingRent")] Asset asset)
+        public ActionResult Create(Asset asset)
         {
             if (ModelState.IsValid)
             {

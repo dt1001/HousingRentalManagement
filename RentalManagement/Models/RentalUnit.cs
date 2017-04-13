@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,16 +8,15 @@ namespace RentalManagement.Models
 {
     public class RentalUnit
     {
+        [Key]
         public int id { get; set; }
+        [Display(Name = "Rooms")]
         public int rooms { get; set; }
-        public double size { get; set; }
+        [Display(Name = "Vacancies")]
+        public int vacancies { get; set; }
+        [Display(Name = "Address")]
         public string address { get; set; }
-        public int vacancies{ get; set; }
-    }
-    public class RentalUnitDBContext : DbContext
-    {
-        public DbSet<RentalUnit> RentalUnits { get; set; }
-        public DbSet<Apartment> Apartments { get; set; }
-        public DbSet<House> Houses { get; set; }
+        [Display(Name = "Size")]
+        public double size { get; set; }
     }
 }

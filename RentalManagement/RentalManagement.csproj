@@ -203,37 +203,10 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RentalUnitsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704040807040_InitialCreate.cs" />
-    <Compile Include="Migrations\201704040807040_InitialCreate.Designer.cs">
-      <DependentUpon>201704040807040_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704040832587_AddAssetsToClient.cs" />
-    <Compile Include="Migrations\201704040832587_AddAssetsToClient.Designer.cs">
-      <DependentUpon>201704040832587_AddAssetsToClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704042029312_AddAssetsToClient1.cs" />
-    <Compile Include="Migrations\201704042029312_AddAssetsToClient1.Designer.cs">
-      <DependentUpon>201704042029312_AddAssetsToClient1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704042058362_AddClientViewModel.cs" />
-    <Compile Include="Migrations\201704042058362_AddClientViewModel.Designer.cs">
-      <DependentUpon>201704042058362_AddClientViewModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704060633482_AddAssetId.cs" />
-    <Compile Include="Migrations\201704060633482_AddAssetId.Designer.cs">
-      <DependentUpon>201704060633482_AddAssetId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704080556290_ChangedDB.cs" />
-    <Compile Include="Migrations\201704080556290_ChangedDB.Designer.cs">
-      <DependentUpon>201704080556290_ChangedDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704080739039_AddedNullableDateTime.cs" />
-    <Compile Include="Migrations\201704080739039_AddedNullableDateTime.Designer.cs">
-      <DependentUpon>201704080739039_AddedNullableDateTime.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201704120805486_UpdateContext.cs" />
     <Compile Include="Migrations\201704120805486_UpdateContext.Designer.cs">
@@ -241,13 +214,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\FullAddress.cs" />
+    <Compile Include="Models\House.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OccupancyHistoryRecord.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\RentalUnit.cs" />
     <Compile Include="Models\RentHistoryRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -407,6 +383,11 @@
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Approvement\Details.cshtml" />
     <Content Include="Views\Approvement\Index.cshtml" />
+    <Content Include="Views\RentalUnits\Create.cshtml" />
+    <Content Include="Views\RentalUnits\Delete.cshtml" />
+    <Content Include="Views\RentalUnits\Details.cshtml" />
+    <Content Include="Views\RentalUnits\Edit.cshtml" />
+    <Content Include="Views\RentalUnits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -420,27 +401,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704040807040_InitialCreate.resx">
-      <DependentUpon>201704040807040_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704040832587_AddAssetsToClient.resx">
-      <DependentUpon>201704040832587_AddAssetsToClient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704042029312_AddAssetsToClient1.resx">
-      <DependentUpon>201704042029312_AddAssetsToClient1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704042058362_AddClientViewModel.resx">
-      <DependentUpon>201704042058362_AddClientViewModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704060633482_AddAssetId.resx">
-      <DependentUpon>201704060633482_AddAssetId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704080556290_ChangedDB.resx">
-      <DependentUpon>201704080556290_ChangedDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704080739039_AddedNullableDateTime.resx">
-      <DependentUpon>201704080739039_AddedNullableDateTime.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704120805486_UpdateContext.resx">
       <DependentUpon>201704120805486_UpdateContext.cs</DependentUpon>
     </EmbeddedResource>

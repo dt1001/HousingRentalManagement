@@ -15,13 +15,13 @@
             @Html.DisplayNameFor(model => model.rooms)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.size)
+            @Html.DisplayNameFor(model => model.vacancies)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.address)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.vacancies)
+            @Html.DisplayNameFor(model => model.size)
         </th>
         <th></th>
     </tr>
@@ -32,13 +32,13 @@
             @Html.DisplayFor(modelItem => item.rooms)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.size)
+            @Html.DisplayFor(modelItem => item.vacancies)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.address)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.vacancies)
+            @Html.DisplayFor(modelItem => item.size)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

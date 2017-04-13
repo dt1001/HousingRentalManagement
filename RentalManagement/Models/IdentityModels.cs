@@ -30,6 +30,7 @@ namespace RentalManagement.Models
         public DbSet<FullAddress> FullAddresses { get; set; }
         public DbSet<OccupancyHistoryRecord> OccupancyRecords { get; set; }
         public DbSet<RentHistoryRecord> RentRecords { get; set; }
+        public DbSet<RentalUnit> RentalUnits { get; set; }
 
 
         public static ApplicationDbContext Create()

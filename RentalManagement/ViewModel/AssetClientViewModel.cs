@@ -11,6 +11,10 @@ namespace RentalManagement.ViewModel {
 
         public FullAddress AssetAddress { get; set; }
 
+        public FullAddress ClientHomeAddress { get; set; }
+
+        public FullAddress ClientWorkAddress { get; set; }
+
         public string AssetType { get; set; }
     }
 }

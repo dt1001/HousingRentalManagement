@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RentalManagement.Models.Contractor>
+
+@{
+    ViewBag.Title = "Contractors";
+}
+
+<h2>Contractors</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.companyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.profession)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.companyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.profession)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.contId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.contId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.contId })
+        </td>
+    </tr>
+}
+
+</table>

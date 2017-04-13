@@ -18,7 +18,19 @@
             @Html.DisplayNameFor(model => model.AssetType)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AssetAddress) 
+            @Html.DisplayNameFor(model => model.AssetAddress.UnitNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssetAddress.StreetAddress) 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssetAddress.PostalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssetAddress.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssetAddress.Province)
         </th>
         <th></th>
     </tr>
@@ -31,8 +43,20 @@
         <td>
             @Html.DisplayFor(modelItem => item.AssetType)
         </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssetAddress.UnitNum)
+            </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AssetAddress)
+            @Html.DisplayFor(modelItem => item.AssetAddress.StreetAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssetAddress.PostalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssetAddress.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssetAddress.Province)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ClientId }, null) |

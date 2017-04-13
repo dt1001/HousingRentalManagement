@@ -39,12 +39,27 @@ namespace RentalManagement.Controllers {
 
         // GET: Clients/Details/5
         public ActionResult Details(int id) {
-            var clients = db.Clients.Include(c => c.OccupancyRecords).Include(c => c.HomeAddress).Include(c => c.WorkAddress).SingleOrDefault(c => c.Id == id);
-            if (clients == null) {
-                return HttpNotFound();
-            }
+            //List<AssetClientViewModel> viewModel = new List<AssetClientViewModel>();
+            var clients = (from o in db.OccupancyRecords
+                           join c in db.Clients on o.ClientId equals c.Id
+                           join a in db.Assets on o.AssetId equals a.Id
+                           select new {
+                               ClientId = id,
+                               Name = c.Name,
+                               AssetType = a.Type,
+                               ClientHomeAddress = c.HomeAddress,
+                               ClientWorkAddress = c.WorkAddress
+                           }).Distinct().FirstOrDefault(c => c.ClientId == id);
 
-            return View(clients);
+            var viewModel = new AssetClientViewModel {
+                ClientId = clients.ClientId,
+                ClientName = clients.Name,
+                AssetType = clients.AssetType,
+                ClientHomeAddress = clients.ClientHomeAddress,
+                ClientWorkAddress = clients.ClientWorkAddress
+            };
+            
+                return View(viewModel);
         }
 
         // GET: Clients/Create

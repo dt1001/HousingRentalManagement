@@ -13,12 +13,16 @@ namespace RentalManagement.Models
     {
         
         [Key]
+        [Display(Name = "Ticket Id")]
         public int id { get; set; }
+        [Display(Name = "Issue Date")]
         public DateTime issueDate { get; set; }
+        [Display(Name = "Priority")]
         public int priority { get; set; }
+        [Display(Name = "Description")]
         [DataType(DataType.MultilineText)]
         public string description { get; set; }
-        //public virtual ICollection<RentalUnit>;
+        public virtual RentalUnit rentalUnit { get; set; }
         public virtual ICollection<Employee> employees {get;set;}
         public virtual ICollection<Contractor> contractors { get; set; }
         public Ticket()

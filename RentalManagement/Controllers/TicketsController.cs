@@ -38,11 +38,12 @@ namespace RentalManagement.Controllers
                          {
                              id = tick.id,
                              issueDate = tick.issueDate,
+                             unit = tick.rentalUnit,
                              priority = tick.priority,
                              empId = emp.empId,
                              name = emp.name,
                              companyName = cont.companyName
-                         }).ToList();
+                         });
             return View("Index", viewModel);
         }
 
@@ -77,6 +78,7 @@ namespace RentalManagement.Controllers
                              {
                                  id = tick.id,
                                  issueDate = tick.issueDate,
+                                 unit = tick.rentalUnit,
                                  priority = tick.priority,
                                  empId = emp.empId,
                                  name = emp.name,
@@ -93,7 +95,8 @@ namespace RentalManagement.Controllers
             TicketViewModel viewModel = new TicketViewModel
             {
                 Employees = db.Employees.ToList(),
-                Contractors = db.Contractors.ToList()
+                Contractors = db.Contractors.ToList(),
+                RentalUnits = db.RentalUnits.ToList()
             };
             return View("Create",viewModel);
         }
@@ -103,7 +106,7 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Ticket ticket, Employee employee, Contractor contractor)
+        public ActionResult Create(Ticket ticket, Employee employee, Contractor contractor, RentalUnit rentalUnit)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +114,6 @@ namespace RentalManagement.Controllers
                 {
                     Employee emp = db.Employees.Find(employee.empId);
                     ticket.employees.Add(emp);
-
                     emp.tickets.Add(ticket);
                     db.Entry(emp).State = EntityState.Modified;
                 }
@@ -121,6 +123,13 @@ namespace RentalManagement.Controllers
                     ticket.contractors.Add(cont);
                     cont.tickets.Add(ticket);
                     db.Entry(cont).State = EntityState.Modified;
+                }
+                if(rentalUnit != null && rentalUnit.unitId > 0)
+                {
+                    RentalUnit unit = db.RentalUnits.Find(rentalUnit.unitId);
+                    ticket.rentalUnit = unit;
+                    unit.tickets.Add(ticket);
+                    db.Entry(unit).State = EntityState.Modified;
                 }
                 db.Tickets.Add(ticket);
                 db.SaveChanges();
@@ -141,6 +150,7 @@ namespace RentalManagement.Controllers
             {
                 Employees = db.Employees.ToList(),
                 Contractors = db.Contractors.ToList(),
+                RentalUnits = db.RentalUnits.ToList(),
                 ticket = db.Tickets.Find(id)
             };
             if (viewModel.ticket == null)
@@ -155,13 +165,14 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,description,issueDate,priority")] Ticket ticket, Employee employee, Contractor contractor)
+        public ActionResult Edit([Bind(Include = "id,description,issueDate,priority")] Ticket ticket, Employee employee, Contractor contractor, RentalUnit rentalUnit)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(ticket).State = EntityState.Modified;
                 db.Entry(db.Employees.Find(employee.empId)).State = EntityState.Modified;
                 db.Entry(db.Contractors.Find(contractor.contId)).State = EntityState.Modified;
+                db.Entry(db.RentalUnits.Find(rentalUnit.unitId)).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

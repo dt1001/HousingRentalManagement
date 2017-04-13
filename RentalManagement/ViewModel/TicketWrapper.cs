@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RentalManagement.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace RentalManagement.ViewModel
     {
         public int id { get; set; }
         public DateTime issueDate { get; set; }
+        public RentalUnit unit { get; set; }
         public int priority { get; set; }
         public int empId { get; set; }
         public string name { get; set; }

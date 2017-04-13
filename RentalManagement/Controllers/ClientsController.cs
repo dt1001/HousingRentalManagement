@@ -22,13 +22,12 @@ namespace RentalManagement.Controllers
             var clients = (from c in db.Clients
                            join o in db.OccupancyRecords on c.Id equals o.ClientId
                            join a in db.Assets on o.AssetId equals a.Id
-                           select new { ClientId = c.Id, Name = c.Name, AssetType = a.Type, AssetAddress = a.Address }).ToList();
+                           select new { ClientId = c.Id, Name = c.Name, AssetType = a.Type }).ToList();
             foreach (var client in clients) {
                 viewModel.Add(new AssetClientViewModel() {
                     ClientId = client.ClientId,
                     ClientName = client.Name,
-                    AssetAddress = client.AssetAddress,
-                    AssetType = client.AssetType
+                    AssetType = client.AssetType,
                 });
             }
             return View(viewModel);

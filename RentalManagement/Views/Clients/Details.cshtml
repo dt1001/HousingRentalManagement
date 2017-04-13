@@ -24,13 +24,27 @@
             @Html.DisplayFor(model => model.OccupancyRecords)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OccupancyRecords)
-        </dt>
+        @Html.LabelFor(model => model.OccupancyRecords, htmlAttributes: new { @class = "control-label col-md-2" })
+        @foreach (var occ in Model.OccupancyRecords) {
+            <table class="table table-bordered" style="margin:10px">
+                <tr>
+                    <th>Record ID</th>
+                    <th>Client ID</th>
+                    <th>Asset ID</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.OccupancyRecords)
-        </dd>
+                <tr>
+                    <td>@occ.Id</td>
+                    <td>@occ.ClientId</td>
+                    <td>@occ.AssetId</td>
+                    <td>@occ.StartDate</td>
+                    <td>@occ.EndDate</td>
+
+                </tr>
+            </table>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.HomeAddress)

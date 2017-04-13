@@ -24,12 +24,12 @@ namespace RentalManagement.Controllers
         // GET: Assets/Details/5
         public ActionResult Details(int id)
         {
-            var clients = db.Clients.Include(c => c.OccupancyRecords).SingleOrDefault(c => c.Id == id);
-            if(clients == null) {
+            var assets = db.Assets.SingleOrDefault(c => c.Id == id);
+            if(assets == null) {
                 return HttpNotFound();
             }
 
-            return View(clients);
+            return View(assets);
         }
 
         // GET: Assets/Create

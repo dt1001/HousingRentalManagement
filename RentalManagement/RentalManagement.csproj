@@ -210,13 +210,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704130557560_InitialCreate.cs" />
-    <Compile Include="Migrations\201704130557560_InitialCreate.Designer.cs">
-      <DependentUpon>201704130557560_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704130815598_AddedNullableDateValue.cs" />
-    <Compile Include="Migrations\201704130815598_AddedNullableDateValue.Designer.cs">
-      <DependentUpon>201704130815598_AddedNullableDateValue.cs</DependentUpon>
+    <Compile Include="Migrations\201704131622097_didsomething.cs" />
+    <Compile Include="Migrations\201704131622097_didsomething.Designer.cs">
+      <DependentUpon>201704131622097_didsomething.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -498,11 +494,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704130557560_InitialCreate.resx">
-      <DependentUpon>201704130557560_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704130815598_AddedNullableDateValue.resx">
-      <DependentUpon>201704130815598_AddedNullableDateValue.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704131622097_didsomething.resx">
+      <DependentUpon>201704131622097_didsomething.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

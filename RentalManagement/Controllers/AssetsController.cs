@@ -15,6 +15,7 @@ namespace RentalManagement.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Assets
+        [Authorize(Roles = "Employee,Supervisor,Client")]
         public ActionResult Index()
         {
             return View(db.Assets.ToList());
@@ -23,7 +24,7 @@ namespace RentalManagement.Controllers
         // GET: Assets/Details/5
         public ActionResult Details(int id)
         {
-            var clients = db.Clients.Include(c => c.Assets).SingleOrDefault(c => c.Id == id);
+            var clients = db.Clients.Include(c => c.OccupancyRecords).SingleOrDefault(c => c.Id == id);
             if(clients == null) {
                 return HttpNotFound();
             }
@@ -42,7 +43,7 @@ namespace RentalManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Type,AskingRent")] Asset asset)
+        public ActionResult Create(Asset asset)
         {
             if (ModelState.IsValid)
             {

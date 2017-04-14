@@ -24,18 +24,26 @@ namespace RentalManagement.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
         public DbSet<Person> People { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Asset> Assets { get; set; }
         public DbSet<FullAddress> FullAddresses { get; set; }
         public DbSet<OccupancyHistoryRecord> OccupancyRecords { get; set; }
         public DbSet<RentHistoryRecord> RentRecords { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Contractor> Contractors { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<RentalUnit> RentalUnits { get; set; }
 
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

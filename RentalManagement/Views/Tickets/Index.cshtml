@@ -1,0 +1,67 @@
+﻿@model IEnumerable <RentalManagement.ViewModel.TicketWrapper>
+@{
+    ViewBag.Title = "Tickets";
+}
+
+<h2>Ticket</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="ticket-list">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.issueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.priority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.empId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.companyName)
+        </th>
+        <th></th>
+    </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(model => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.issueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.unit.address)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.priority)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.empId)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.companyName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+</table>

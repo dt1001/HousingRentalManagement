@@ -13,12 +13,21 @@ namespace RentalManagement.ViewModel
     public class TicketWrapper
     {
         public int id { get; set; }
+
         public DateTime issueDate { get; set; }
-        public RentalUnit unit { get; set; }
+
+        public Asset asset { get; set; }
+
         public int priority { get; set; }
+
         public int empId { get; set; }
+
         public string name { get; set; }
-        public string companyName { get; set;}
+
+        public string companyName { get; set; }
+
         public string description { get; set; }
+
+        public FullAddress assetAddress { get; set; }
     }
 }

@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace RentalManagement.Models {
-    public class Asset {
+namespace RentalManagement.Models
+{
+    public class Asset
+    {
         public int Id { get; set; }
 
         [Display(Name = "Asset Name")]
@@ -23,5 +25,11 @@ namespace RentalManagement.Models {
 
         public ICollection<RentHistoryRecord> RentRecords;
 
+        public ICollection<Ticket> tickets { get; set; }
+
+        public Asset()
+        {
+            tickets = new List<Ticket>();
+        }
     }
 }

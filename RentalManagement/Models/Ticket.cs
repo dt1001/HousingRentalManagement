@@ -11,7 +11,7 @@ namespace RentalManagement.Models
     [Table("Ticket")]
     public class Ticket
     {
-        
+
         [Key]
         [Display(Name = "Ticket Id")]
         public int id { get; set; }
@@ -22,8 +22,8 @@ namespace RentalManagement.Models
         [Display(Name = "Description")]
         [DataType(DataType.MultilineText)]
         public string description { get; set; }
-        public virtual RentalUnit rentalUnit { get; set; }
-        public virtual ICollection<Employee> employees {get;set;}
+        public virtual Asset asset { get; set; }
+        public virtual ICollection<Employee> employees { get; set; }
         public virtual ICollection<Contractor> contractors { get; set; }
         public Ticket()
         {
